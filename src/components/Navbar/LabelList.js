@@ -1,7 +1,7 @@
 import Label from "./Label";
 
 const LabelList = ({placemarks}) => (
-	<div className="label-list">
+	<div className="nav__label-list label-list">
 		{placemarks.map(mark => 
 			<Label 
 				title={mark.title}

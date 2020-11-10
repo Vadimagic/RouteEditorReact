@@ -1,5 +1,7 @@
 import { Component } from "react";
 import Navbar from "./components/Navbar/Navbar";
+import Navigation from "./components/Navigation/Navigation";
+import './style.css'
 
 class App extends Component{
 	state = {
@@ -15,7 +17,9 @@ class App extends Component{
 				<Navbar 
 					placemarks={this.state.placemarks} 
 				/>
-				<div>Navigation</div>
+				<Navigation 
+					geometry={this.state.placemarks}
+				/>
 			</div>
 		)
 	}
