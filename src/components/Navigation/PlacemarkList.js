@@ -1,7 +1,7 @@
 import { Placemark } from 'react-yandex-maps'
 
-const PlacemarkList = ({placemarks}) => {
-	return placemarks.map(placemark => 
+const PlacemarkList = ({placemarks, changePosition}) => {
+	return placemarks.map((placemark, index) => 
 		<Placemark 
 			geometry={placemark.position}
 			properties={{
@@ -10,6 +10,7 @@ const PlacemarkList = ({placemarks}) => {
 			modules={['geoObject.addon.balloon']}
 			key={placemark.id} 
 			options={{ draggable: true }}
+			onDragEnd={e => changePosition(index, e.get('target').geometry.getCoordinates())}
 		/>
 	)
 }

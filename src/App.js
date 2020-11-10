@@ -10,7 +10,7 @@ class App extends Component{
 			{id: '11893129819110126', title: "Marina", position: [50.751574, 137.073856]},
 			{id: '8884471543416042', title: "Vadim", position: [55.751574, 37.573856]},
 		],
-		centerNow: [55.75, 37.57]
+		center: [55.75, 37.57]
 	}
 
 	createMarker = e => {
@@ -24,7 +24,7 @@ class App extends Component{
 		let marker = {
 			id:(new Date()).getTime()+Math.random(),
 			title: formData.title.trim(),
-			position: this.state.centerNow,
+			position: this.state.center,
 			index:this.state.placemarks.length
 		};
 
@@ -54,8 +54,16 @@ class App extends Component{
 
 	onBoundsChange = e => {
 		this.setState({
-			centerNow: e.get('target').getCenter()
+			center: e.get('target').getCenter()
 		});
+	}
+
+	changePlacemarksPosition = (index, newPosition) => {
+		const placemarksClon = this.state.placemarks;
+		placemarksClon[index].position = newPosition
+		this.setState({
+			placemarks: placemarksClon
+		})
 	}
 	
 	render() {
@@ -70,6 +78,7 @@ class App extends Component{
 				<Navigation 
 					geometry={this.state.placemarks}
 					onBoundsChange={this.onBoundsChange}
+					changePlacemarksPosition={this.changePlacemarksPosition}
 				/>
 			</div>
 		)

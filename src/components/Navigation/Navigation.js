@@ -20,7 +20,8 @@ const Navigation = (props) => {
 					}}
 				/>
 				<PlacemarkList
-					placemarks={props.geometry} 
+					placemarks={props.geometry}
+					changePosition={props.changePlacemarksPosition}
 				/>
 				<SearchControl/>
 				<ZoomControl/>
