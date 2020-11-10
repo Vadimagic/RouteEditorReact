@@ -51,6 +51,12 @@ class App extends Component{
 			})
 		});
 	};
+
+	onBoundsChange = e => {
+		this.setState({
+			centerNow: e.get('target').getCenter()
+		});
+	}
 	
 	render() {
 		return (
@@ -63,6 +69,7 @@ class App extends Component{
 				/>
 				<Navigation 
 					geometry={this.state.placemarks}
+					onBoundsChange={this.onBoundsChange}
 				/>
 			</div>
 		)

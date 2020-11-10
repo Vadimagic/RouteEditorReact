@@ -7,6 +7,7 @@ const Navigation = (props) => {
 		<YMaps>
 			<Map 
 				defaultState={{ center: [55.75, 37.57], zoom: 5}}
+				onBoundsChange={props.onBoundsChange}
 				className="map"
 			>
 				<Polyline
