@@ -8,14 +8,47 @@ class App extends Component{
 		placemarks: [
 			{id: '11893129819110126', title: "Marina", position: [50.751574, 137.073856]},
 			{id: '8884471543416042', title: "Vadim", position: [55.751574, 37.573856]},
-		]
+		],
+		centerNow: [55.75, 37.57]
 	}
+
+	createMarker = e => {
+		e.preventDefault();
+
+		const formData  = Object.fromEntries(new FormData(e.target).entries());
+		if (!formData.title.trim().length) {
+			return;
+		}
+		
+		let marker = {
+			id:(new Date()).getTime()+Math.random(),
+			title: formData.title.trim(),
+			position: this.state.centerNow,
+			index:this.state.placemarks.length
+		};
+
+		this.setState({
+			placemarks: this.state.placemarks.concat(marker)
+		});
+
+		e.target.reset()
+	}
+
+	removeMarker = index => {
+		const placemarksCopy = this.state.placemarks.filter((_, i) => i !== index);
+
+		this.setState({
+			placemarks: placemarksCopy
+		});
+	} 
 	
 	render() {
 		return (
 			<div className="container">
 				<Navbar 
-					placemarks={this.state.placemarks} 
+					placemarks={this.state.placemarks}
+					createMarker={this.createMarker}
+					removeMarker={this.removeMarker}
 				/>
 				<Navigation 
 					geometry={this.state.placemarks}

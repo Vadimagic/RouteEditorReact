@@ -1,12 +1,15 @@
 import LabelList from "./LabelList";
 
-const Navbar = ({placemarks}) => {
+const Navbar = ({placemarks, createMarker, removeMarker}) => {
 	return (
 		<div className="nav">
-			<form>
-				<input className="nav__input-add" type="text" placeholder="Новая точка маршрута"/>
+			<form onSubmit={createMarker}>
+				<input className="nav__input-add" name="title" type="text" placeholder="Новая точка маршрута"/>
 			</form>
-			<LabelList placemarks={placemarks}/>
+			<LabelList 
+				placemarks={placemarks}
+				removeMarker={removeMarker}
+			/>
 		</div>
 	)
 }
