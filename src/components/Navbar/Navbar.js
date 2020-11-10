@@ -1,6 +1,6 @@
 import LabelList from "./LabelList";
 
-const Navbar = ({placemarks, createMarker, removeMarker}) => {
+const Navbar = ({placemarks, createMarker, removeMarker, onSortEnd}) => {
 	return (
 		<div className="nav">
 			<form onSubmit={createMarker}>
@@ -9,6 +9,7 @@ const Navbar = ({placemarks, createMarker, removeMarker}) => {
 			<LabelList 
 				placemarks={placemarks}
 				removeMarker={removeMarker}
+				onSortEnd={onSortEnd}
 			/>
 		</div>
 	)

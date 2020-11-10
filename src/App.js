@@ -1,7 +1,8 @@
 import { Component } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Navigation from "./components/Navigation/Navigation";
-import './style.css'
+import arrayMove from 'array-move';
+import './style.css';
 
 class App extends Component{
 	state = {
@@ -41,6 +42,15 @@ class App extends Component{
 			placemarks: placemarksCopy
 		});
 	} 
+
+	onSortEnd=({oldIndex,newIndex})=>{
+		this.setState({
+				placemarks:arrayMove(this.state.placemarks, oldIndex, newIndex).map((mark,i)=>{
+					mark.index=i;
+					return mark;
+			})
+		});
+	};
 	
 	render() {
 		return (
@@ -49,6 +59,7 @@ class App extends Component{
 					placemarks={this.state.placemarks}
 					createMarker={this.createMarker}
 					removeMarker={this.removeMarker}
+					onSortEnd={this.onSortEnd}
 				/>
 				<Navigation 
 					geometry={this.state.placemarks}
