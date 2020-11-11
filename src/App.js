@@ -13,8 +13,6 @@ class App extends Component{
 	createMarker = e => {
 		e.preventDefault();
 
-		console.log(e)
-
 		const formData  = Object.fromEntries(new FormData(e.target).entries());
 		if (!formData.title.trim().length) {
 			return;
