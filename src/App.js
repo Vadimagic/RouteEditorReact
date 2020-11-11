@@ -6,15 +6,14 @@ import './style.css';
 
 class App extends Component{
 	state = {
-		placemarks: [
-			{id: '11893129819110126', title: "Marina", position: [50.751574, 137.073856]},
-			{id: '8884471543416042', title: "Vadim", position: [55.751574, 37.573856]},
-		],
+		placemarks: [],
 		center: [55.75, 37.57]
 	}
 
 	createMarker = e => {
 		e.preventDefault();
+
+		console.log(e)
 
 		const formData  = Object.fromEntries(new FormData(e.target).entries());
 		if (!formData.title.trim().length) {
@@ -22,7 +21,7 @@ class App extends Component{
 		}
 		
 		let marker = {
-			id:(new Date()).getTime()+Math.random(),
+			id: String(Math.random()).replace(/.*\./, ''),
 			title: formData.title.trim(),
 			position: this.state.center,
 			index:this.state.placemarks.length
@@ -64,7 +63,7 @@ class App extends Component{
 		this.setState({
 			placemarks: placemarksClon
 		})
-	}
+	} 
 	
 	render() {
 		return (
